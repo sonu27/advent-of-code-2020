@@ -49,28 +49,28 @@ func part2(nums []int) {
 		options[nums[i]] = next
 	}
 
-	max := nums[len(nums)-1]
+	last := nums[len(nums)-1]
 	cache := make(map[int]int64)
-	v := permutations(0, options, max, cache)
+	v := permutations(0, options, last, cache)
 	fmt.Println(v)
 }
 
-func permutations(i int, options map[int][]int, max int, cache map[int]int64) (total int64) {
-	if i == max {
-		total = 1
-		return total
+func permutations(i int, options map[int][]int, last int, cache map[int]int64) int64 {
+	var total int64
+
+	if i == last {
+		return 1
 	}
 
 	for _, v := range options[i] {
 		if cache[v] == 0 {
-			total += permutations(v, options, max, cache)
+			total += permutations(v, options, last, cache)
 		} else {
 			total += cache[v]
 		}
 	}
-
 	cache[i] = total
-	return
+	return total
 }
 
 func readLines(path string) ([]int, error) {
