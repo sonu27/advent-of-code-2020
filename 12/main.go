@@ -101,12 +101,8 @@ func part2(ins []Ins) {
 	fmt.Println(math.Abs(float64(x + y)))
 }
 
-func mod(val, m int) int {
-	val = val % m
-	if val < 0 {
-		val = m + val
-	}
-	return val
+func mod(a, m int) int {
+	return (a%m + m) % m
 }
 
 func readLines(path string) ([]Ins, error) {
